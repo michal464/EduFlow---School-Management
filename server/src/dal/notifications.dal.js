@@ -10,7 +10,6 @@ async function create({ user_id, role_target, type, title, content, data }) {
   return result.insertId;
 }
 
-// Returns all role_target values that apply to this user's role
 function buildRoleTargets(role) {
   if (role === 'Educator') {
     return ['all', 'all_teachers', 'Educator'];

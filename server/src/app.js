@@ -29,7 +29,6 @@ app.use(cors({
   credentials: true,
 }));
 
-// HTTP request logging via morgan → winston
 app.use(morgan('combined', {
   stream: { write: (msg) => logger.http(msg.trim()) },
 }));

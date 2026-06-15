@@ -58,7 +58,6 @@ async function getStudentsByClass(classId) {
     );
     return rows;
   } catch {
-    // id_number column missing — run database/migrate.sql to add it
     const [rows] = await pool.query(
       `SELECT id, name, NULL AS id_number, student_number, phone_father, phone_mother, phone_home,
               parent_email, date_of_birth

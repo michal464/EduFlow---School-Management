@@ -6,7 +6,6 @@ const { UPLOAD_DIR } = require('../config/multer');
 
 async function getLibrary(teacherId) {
   const files = await libraryDAL.findByTeacher(teacherId);
-  // Group by subject
   const grouped = {};
   files.forEach((f) => {
     if (!grouped[f.subject_name]) grouped[f.subject_name] = [];

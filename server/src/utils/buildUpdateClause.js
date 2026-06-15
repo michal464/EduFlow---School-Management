@@ -1,7 +1,3 @@
-/**
- * Builds a dynamic SQL SET clause from an allowed-fields whitelist.
- * Returns { clause: "field1 = ?, field2 = ?", values: [...] }
- */
 function buildUpdateClause(fields, allowed) {
   const keys = Object.keys(fields).filter(
     (k) => allowed.includes(k) && fields[k] !== undefined

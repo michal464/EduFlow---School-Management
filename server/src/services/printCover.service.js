@@ -12,21 +12,14 @@ async function generateCoverPage(requestId, res) {
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader('Content-Disposition', `attachment; filename="cover-${requestId}.pdf"`);
   doc.pipe(res);
-
-  // Header background
   doc.rect(0, 0, doc.page.width, 120).fill('#1e3a5f');
-
-  // Logo area
   doc.fontSize(32).fillColor('#ffffff').font('Helvetica-Bold')
     .text('EduFlow', 50, 35, { align: 'left' });
-
   doc.fontSize(14).fillColor('#a0c4ff').font('Helvetica')
     .text('School Management Platform', 50, 75);
-
   doc.fontSize(20).fillColor('#ffffff').font('Helvetica-Bold')
     .text('PRINT JOB COVER SHEET', 0, 45, { align: 'right', width: doc.page.width - 50 });
 
-  // Main content
   const startY = 140;
   const labelX = 50;
   const valueX = 220;
@@ -41,7 +34,6 @@ async function generateCoverPage(requestId, res) {
       .strokeColor('#e5e7eb').lineWidth(1).stroke();
   }
 
-  // Priority badge
   const priorityColors = { urgent: '#dc2626', important: '#d97706', normal: '#059669' };
   const priorityBg = priorityColors[request.priority] || '#6b7280';
   doc.roundedRect(doc.page.width - 160, 130, 110, 28, 6).fill(priorityBg);

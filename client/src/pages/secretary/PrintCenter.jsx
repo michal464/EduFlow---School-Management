@@ -9,7 +9,6 @@ import toast from 'react-hot-toast';
 export default function PrintCenter() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // All filter values derived from URL
   const filters = {
     priority: searchParams.get('priority') || '',
     status:   searchParams.get('status')   || '',
@@ -18,7 +17,6 @@ export default function PrintCenter() {
   };
   const page = Math.max(1, parseInt(searchParams.get('page') || '1', 10));
 
-  // Write filter changes back to URL so back/forward and deep-links work
   const setFilters = useCallback((updater) => {
     setSearchParams((prev) => {
       const current = {
@@ -33,7 +31,6 @@ export default function PrintCenter() {
       if (next.status)   out.set('status',   next.status);
       if (next.dateFrom) out.set('dateFrom', next.dateFrom);
       if (next.dateTo)   out.set('dateTo',   next.dateTo);
-      // Reset to page 1 whenever filters change
       return out;
     }, { replace: true });
   }, [setSearchParams]);

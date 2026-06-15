@@ -84,7 +84,6 @@ async function getTeacherProfile(teacherId) {
   return { ...user, classes, subjects, homeroomClasses };
 }
 
-// Assigning homeroom classes also flips the user's role between teacher ↔ Educator
 async function assignHomeroomClasses(teacherId, classIds) {
   const user = await usersDAL.findById(teacherId);
   if (!user) throw new AppError('User not found.', 404);
@@ -92,7 +91,6 @@ async function assignHomeroomClasses(teacherId, classIds) {
 
   await teacherAssignmentsDAL.assignHomeroomClasses(teacherId, classIds);
 
-  // Promote to Educator when classes are assigned, demote when cleared
   const targetRole = classIds.length > 0 ? 'Educator' : 'teacher';
   if (user.role !== targetRole) {
     const newRoleId = await usersDAL.getRoleId(targetRole);

@@ -1,7 +1,3 @@
-// Visual styling constants extracted from component files.
-// Keeping these as JS strings (not CSS @apply) ensures Tailwind's
-// content scanner finds every class and generates the correct CSS.
-
 export const buttonVariants = {
   primary:   'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500',
   secondary: 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-primary-500',

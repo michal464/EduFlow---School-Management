@@ -26,12 +26,8 @@ async function getInbox(userId, role) {
 }
 
 async function sendMessage(senderId, { recipient_ids, recipient_role, subject, body }, app, file) {
-  // Support sending to explicit recipient IDs or to a recipient role (e.g. 'all_teachers')
   if ((!recipient_ids || !recipient_ids.length) && !recipient_role) throw new AppError('At least one recipient is required.', 400);
-
   const messageIds = [];
-
-  // Case A: broadcast to a role/target (single message stored with recipient_role)
   if (recipient_role) {
     const messageId = await messagesDAL.create({
       sender_id: senderId,

@@ -11,7 +11,6 @@ export default function StaffList() {
   const [pagination, setPagination] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Derive filter state from URL
   const search     = searchParams.get('search') || '';
   const roleFilter = searchParams.get('role')   || '';
   const page       = Math.max(1, parseInt(searchParams.get('page') || '1', 10));

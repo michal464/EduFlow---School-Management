@@ -18,7 +18,6 @@ async function log({ userId, action, entity, entityId, oldValues, newValues, ipA
       ]
     );
   } catch (err) {
-    // Audit log failure must never crash the main request
     logger.error('audit_log write failed', { err: err.message });
   }
 }

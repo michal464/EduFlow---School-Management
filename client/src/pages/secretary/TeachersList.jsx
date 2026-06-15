@@ -25,7 +25,6 @@ export default function TeachersList() {
 
   return (
     <div className="space-y-5">
-      {/* Search */}
       <div className="card p-4">
         <input
           type="search"

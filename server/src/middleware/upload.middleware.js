@@ -14,7 +14,6 @@ function handleUpload(fieldName, maxCount = 5) {
         }
         return next(new AppError(err.message || 'File upload failed.', 400));
       }
-      // Fix Hebrew/Unicode filenames: multer reads multipart headers as Latin-1
       const fixName = (f) => {
         try { f.originalname = Buffer.from(f.originalname, 'latin1').toString('utf8'); } catch {}
       };
