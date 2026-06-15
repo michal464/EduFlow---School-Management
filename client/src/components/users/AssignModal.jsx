@@ -18,13 +18,9 @@ export default function AssignModal({ user, classes, onClose }) {
     setSelectedClasses([]);
     setSelectedHomeroomClasses([]);
     setSelectedSubjects([]);
-
-    // Fetch all subjects
     subjectsApi.getAll().then((r) => {
       setSubjects(r.data.data || []);
     }).catch(() => { });
-
-    // Fetch user profile
     usersApi.getProfile(user.id).then((r) => {
       const profile = r.data.data;
       setSelectedClasses((profile.classes || []).map((c) => c.id));

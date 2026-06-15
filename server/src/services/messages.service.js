@@ -40,20 +40,16 @@ async function sendMessage(senderId, { recipient_ids, recipient_role, subject, b
     });
 
     const payload = buildNotificationPayload(messageId, subject, body);
-    // create a role-targeted notification (notifications.dal will handle role_target semantics)
     await notificationsDAL.create({ role_target: recipient_role, type: payload.type, title: payload.title, content: payload.content, data: payload.data });
 
-    // Emit to socket rooms that correspond to the targeted users
     const rooms = [];
     if (recipient_role === 'all_teachers') {
       rooms.push('role:teacher', 'role:Educator');
     } else if (recipient_role === 'all_secretaries') {
       rooms.push('role:secretary');
     } else if (recipient_role === 'all') {
-      // broadcast to all role rooms (best-effort)
       rooms.push('role:admin', 'role:secretary', 'role:teacher', 'role:Educator');
     } else {
-      // direct role name (e.g. 'Educator' or 'teacher') → emit to that role room
       rooms.push(`role:${recipient_role}`);
     }
 
@@ -62,7 +58,6 @@ async function sendMessage(senderId, { recipient_ids, recipient_role, subject, b
     return messageIds;
   }
 
-  // Case B: explicit recipient IDs
   for (const recipient_id of recipient_ids) {
     const recipient = await usersDAL.findById(recipient_id);
     if (!recipient) continue;

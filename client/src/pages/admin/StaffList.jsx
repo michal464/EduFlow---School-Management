@@ -45,7 +45,6 @@ export default function StaffList() {
     setLoading(true);
     usersApi.getAll({ search, role: roleFilter || undefined, page, limit: 20 })
       .then((r) => {
-        // Exclude admins from staff list display
         const data = (r.data.data || []).filter((u) => u.role !== 'admin');
         setUsers(data);
         setPagination(r.data.pagination);

@@ -34,7 +34,6 @@ export default function GradeEntry({ classes, subjects, onSuccess, initialClassI
 
   useEffect(() => {
     if (initialSubjectId) handleSelectSubject(String(initialSubjectId));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialSubjectId]);
 
   async function handleSelectSubject(subjectId) {

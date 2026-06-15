@@ -36,7 +36,6 @@ export default function NotificationBell() {
       const { data } = await notificationsApi.getAll({ limit: PAGE_SIZE, offset: notifications.length });
       appendNotifications(data?.data || [], data?.hasMore || false);
     } catch {
-      // silently fail — user can retry
     } finally {
       setLoadingMore(false);
     }
